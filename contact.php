@@ -29,8 +29,8 @@
             <ul class="nav__list">
               <li class="nav__item"><a href="index.html#about" id="navbar__link" class="navbar__link1 ">About</a></li>
               <li class="nav__item"><a href="index.html#services" id="navbar__link2" class="navbar__link1 ">Services</a></li>
-              <li class="nav__item"><a href="menu.html#menu" id="navbar__link3" class="navbar__link1 ">Menu</a></li>
-              <li class="nav__item"><a href="contact.html" id="navbar__link4" class="navbar__link1 ">Contact us</a></li>
+              <li class="nav__item"><a href="menu.php#menu" id="navbar__link3" class="navbar__link1 ">Menu</a></li>
+              <li class="nav__item"><a href="contact.php" id="navbar__link4" class="navbar__link1 ">Contact us</a></li>
             </ul>
           </div>
 
@@ -57,38 +57,55 @@
 
     <section class="section" id="contact">
       <div class="container">
-        <div class="section-title">
-          <h2>Contact</h2>
-        </div>
+        <div class="section-title"><h2>Contact</h2></div>
         <div class="contact_wrap">
+          <?php
+
+            $Msg = "";
+            if(isset($_GET['error'])){
+              $Msg = " Please Fill in the Blanks ";
+                echo '<div class="alert alert-danger">'.$Msg.'</div>';
+            }
+            if(isset($_GET['success'])){
+              $Msg = " Your Message Has Been Sent ";
+                echo '<div class="alert alert-success">'.$Msg.'</div>';
+            }
+
+          ?>
+          <form action="process.php" method="post">
           <div class="contact_row">
             <div class="first_name">
               <label for="fname" class="section-subtitle">First name</label>
               <br>
-              <input type="text" class="form-control" id="fname">
+              <input type="text" class="form-control" id="fname" name="fname">
             </div>
             <div class="second_name">
               <label for="sname" class="section-subtitle">Second name</label>
               <br>
-              <input type="text" class="form-control" id="sname">
+              <input type="text" class="form-control" id="sname" name="sname">
             </div>
           </div>
+
           <div class="mail">
             <label for="fmail" class="section-subtitle">Email</label>
             <br>
-            <input type="email" class="form-control email" id="fmail">
+            <input type="email" class="form-control email" id="fmail" name="Email">
           </div>
+
           <div class="textarea">
             <label for="messsage" class="section-subtitle">Message</label>
             <br>
-            <textarea name="message" id="message" cols="30" rows="10" class="form-control email" style="height: 169px;"></textarea>
+            <textarea name="msg" id="message" cols="30" rows="10" class="form-control email" style="height: 169px;"></textarea>
           </div>
+
           <div class="send_btn">
-            <input type="submit" class="btn2" value="Send Message">
+            <input type="submit" class="btn2" value="Send Message" name="btn-send">
           </div>
+        </form>
         </div>
       </div>
     </section>
+
     <!-- MAP -->
     <section class="section">
       <div class="container-fluid">
