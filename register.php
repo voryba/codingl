@@ -1,9 +1,10 @@
 <?php
     session_start();
-    if ($_SESSION['user']) {
+    if (isset($_SESSION['user'])) {
         header('Location: profile.php');
     }
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -17,6 +18,12 @@
     <!-- Форма регистрации -->
 
     <form action="php/signup.php" method="post">
+        <div class="avatar_upload">
+          <img src="img/uploadavatar.png" alt="" width="174px" height="174px">
+          <span>Загрузите фото профиля</span>
+          <input type="file" name="avatar">
+        </div>
+
         <label>FN</label>
         <input type="text" name="full_name" placeholder="Enter your name">
         <label>Login</label>
@@ -29,10 +36,10 @@
         <input type="password" name="password_confirm" placeholder="Confirm password">
         <button type="submit">Enter</button>
         <p>
-            Do you have an account? - <a href="index.php">Authorize</a>!
+            Do you have an account? - <a href="login.php">Authorize</a>!
         </p>
         <?php
-            if ($_SESSION['message']) {
+            if (isset($_SESSION['message'])) {
               echo '<p class="msg"> ' . $_SESSION['message'] . ' </p>';
 
             }

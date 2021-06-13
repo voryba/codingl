@@ -8,6 +8,11 @@
     $email = $_POST['email'];
     $password = $_POST['password'];
     $password_confirm = $_POST['password_confirm'];
+    $path='avatars/' . time() . $_FILES['avatar']['name'];
+    	if($path='avatars/' . time() ){
+    		$path='avatars/default_avatar.png' ;
+    	}
+    	move_uploaded_file($_FILES['avatar']['tmp_name'], $path );
 
     if ($password === $password_confirm) {
 
@@ -19,10 +24,10 @@
 
         $password = md5($password);
 
-        mysqli_query($connect, "INSERT INTO `users` (`full_name`, `login`, `email`, `password`, `avatar`) VALUES ('$full_name', '$login', '$email', '$password', NULL)");
+        mysqli_query($connect, "INSERT INTO `users` (`full_name`, `login`, `email`, `password`, `avatar`) VALUES ('$full_name', '$login', '$email', '$password', '$path')");
 
         $_SESSION['message'] = 'Регистрация прошла успешно!';
-        header('Location: ../index.php');
+        header('Location: ../login.php');
 
 
     } else {

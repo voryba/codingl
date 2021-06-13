@@ -5,55 +5,62 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+  if (isset($_SESSION['user'])) {
+    $name = $_SESSION['user']['full_name'];
+  }
+  else {
+    $name = "Log In";
+  }
+?>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Menu - Feliciano food</title>
-
   <!-- CSS only -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
-
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
   <!-- JS -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
-
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
-  <!-- as -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <title>Feliciano food</title>
 </head>
-
-<body>
-
-  <!-- HEADER -->
-  <header class="header">
-    <nav class="navbar navbar-light" id="navBar">
-      <div class="container-header">
-        <div class="header__inner">
-          <div class="navbar-brand mb-0 h1"><a href="index.html" id="nav__logo" class="nav__logo">Feliciano</a></div>
-          <div class="nav__menu">
-            <ul class="nav__list">
-              <li class="nav__item"><a href="index.html#about" id="navbar__link" class="navbar__link1 ">About</a></li>
-              <li class="nav__item"><a href="index.html#services" id="navbar__link2" class="navbar__link1 ">Services</a></li>
-              <li class="nav__item"><a href="#menu" id="navbar__link3" class="navbar__link1 ">Menu</a></li>
-              <li class="nav__item"><a href="contact.php" id="navbar__link4" class="navbar__link1 ">Contact us</a></li>
-            </ul>
-          </div>
-
+<header class="header">
+  <nav class="navbar navbar-light" id="navBar">
+    <div class="container-header">
+      <div class="header__inner">
+        <span class="navbar-brand mb-0 h1"><a href="index.php" id="nav__logo" class="nav__logo">Feliciano</a></span>
+        <div class="nav__menu">
+          <ul class="nav__list">
+            <li class="nav__item"><a href="#about" id="navbar__link" class="navbar__link1 ">About</a></li>
+            <li class="nav__item"><a href="#services" id="navbar__link2" class="navbar__link1 ">Services</a></li>
+            <li class="nav__item"><a href="menu.php#menu" id="navbar__link3" class="navbar__link1 ">Menu</a></li>
+            <li class="nav__item"><a href="contact.php" id="navbar__link4" class="navbar__link1 ">Contact us</a></li>
+            <li class="nav__item">
+              <?php
+                  if (isset($_SESSION['user'])){
+                    echo '<img src="';
+                    echo $_SESSION['user']['avatar'];
+                    echo '" alt="" style="width: 30px; border: 0.5px solid grey; border-radius:5px;">';
+                  };
+               ?>
+              <a href="login.php" id="navbar__link5" class="navbar__link1 ">&nbsp;&nbsp;<?php echo $name;?></a>
+            </li>
+          </ul>
         </div>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
+</header>
+<body>
+
   <!-- MAIN -->
   <main>
 
@@ -319,10 +326,11 @@
           </ul>
         </div>
       </div>
-      <p class="footer__last">© 2021 voryba. Yerkhan Sabyrov</p>
+      <p class="footer__last">© 2021 Yernur & Yerkhanv</p>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/scrollreveal"></script>
   <!-- JS, jQuery -->
   <script src="https://unpkg.com/scrollreveal"></script>
   <script>
@@ -336,6 +344,7 @@
         $('#navbar__link2').addClass('navbar__link');
         $('#navbar__link3').addClass('navbar__link');
         $('#navbar__link4').addClass('navbar__link');
+        $('#navbar__link5').addClass('navbar__link');
         $('#nav__logo').addClass('navbar__link');
       } else {
         $('#navBar').removeClass('scrolled');
@@ -343,6 +352,7 @@
         $('#navbar__link2').removeClass('navbar__link');
         $('#navbar__link3').removeClass('navbar__link');
         $('#navbar__link4').removeClass('navbar__link');
+        $('#navbar__link5').removeClass('navbar__link');
         $('#nav__logo').removeClass('navbar__link');
       }
     });

@@ -5,6 +5,7 @@ if (!$_SESSION['user']) {
 }
 ?>
 
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,9 +18,10 @@ if (!$_SESSION['user']) {
     <!-- Профиль -->
 
     <form>
-        <img src="<?= $_SESSION['user']['avatar'] ?>" width="200" alt="">
+        <img src="<?php echo  $_SESSION['user']['avatar']  ?>" alt="" style="width: 200px; border: 0.5px solid grey; border-radius:50px;">
         <h2 style="margin: 10px 0;"><?= $_SESSION['user']['full_name'] ?></h2>
         <a href="#"><?= $_SESSION['user']['email'] ?></a>
+        Move to a <a href="index.php">Main Page</a>
         <a href="php/logout.php" class="logout">Log out</a>
     </form>
 

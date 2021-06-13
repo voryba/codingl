@@ -6,6 +6,7 @@
        $Email = $_POST['Email'];
        $Msg = $_POST['msg'];
 
+
        if(empty($UserName) || empty($Email) || empty($Sname) || empty($Msg)){
         header('location:contact.php?error');
        }

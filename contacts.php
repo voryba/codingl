@@ -13,6 +13,6 @@ if($res == true){
   echo "Something went wrong!";
 }
   $mysql->close();
-  header('Location: /contacts.html');
+  header('Location: /contacts.php');
 }
 ?>
